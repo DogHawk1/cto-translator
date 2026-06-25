@@ -345,8 +345,8 @@ export default function CTOTranslator() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Migrate core services to Kubernetes to improve deployment reliability and reduce infrastructure costs"
-                className="w-full rounded-lg px-4 py-3 text-sm border border-white/10 focus:outline-none resize-none text-navy placeholder-navy/40"
-                style={{ background: "#FDF8F0" }}
+                className="w-full rounded-lg px-4 py-3 text-sm border border-white/10 focus:outline-none resize-none placeholder-navy/40"
+                style={{ background: "#FDF8F0", color: "#0f1644" }}
               />
             </div>
 
