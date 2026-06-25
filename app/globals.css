@@ -17,3 +17,7 @@ body {
 .input-cream {
   color: #ebd8ae !important;
 }
+
+.input-cream::placeholder {
+  color: rgba(235, 216, 174, 0.4) !important;
+}
