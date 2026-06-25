@@ -315,25 +315,25 @@ export default function CTOTranslator() {
 
             <div className="space-y-2">
               <label className="block text-white/70 text-sm font-medium">
-                Initiative Name / Description
+                Initiative Name / Description <span style={{ color: "#b56422" }}>*</span>
               </label>
               <textarea
                 rows={3}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Migrate core services to Kubernetes to improve deployment reliability and reduce infrastructure costs"
-                className="w-full rounded-lg px-4 py-3 text-sm text-white placeholder-white/20 border border-white/10 focus:outline-none focus:border-orange resize-none"
-                style={{ background: "rgba(255,255,255,0.06)" }}
+                className="w-full rounded-lg px-4 py-3 text-sm placeholder-white/20 border border-white/10 focus:outline-none focus:border-orange resize-none"
+                style={{ background: "rgba(255,255,255,0.06)", color: "#ebd8ae" }}
               />
             </div>
 
             <div className="space-y-2">
-              <label className="block text-white/70 text-sm font-medium">Category</label>
+              <label className="block text-white/70 text-sm font-medium">Category <span style={{ color: "#b56422" }}>*</span></label>
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as Category | "")}
-                className="w-full rounded-lg px-4 py-3 text-sm text-white border border-white/10 focus:outline-none focus:border-orange appearance-none"
-                style={{ background: "#0f1644" }}
+                className="w-full rounded-lg px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-orange appearance-none"
+                style={{ background: "#0f1644", color: "#ebd8ae" }}
               >
                 <option value="">Select a category…</option>
                 {CATEGORIES.map((c) => (
@@ -349,7 +349,7 @@ export default function CTOTranslator() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label className="block text-white/70 text-sm font-medium">Effort Level</label>
+                <label className="block text-white/70 text-sm font-medium">Effort Level <span style={{ color: "#b56422" }}>*</span></label>
                 <div className="flex gap-2">
                   {EFFORTS.map((e) => (
                     <button
@@ -359,7 +359,7 @@ export default function CTOTranslator() {
                       style={
                         effort === e
                           ? { background: "#b56422", borderColor: "#b56422", color: "#fff" }
-                          : { background: "transparent", borderColor: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.5)" }
+                          : { background: "rgba(235,216,174,0.08)", borderColor: "rgba(235,216,174,0.3)", color: "#ebd8ae" }
                       }
                     >
                       {e}
@@ -368,7 +368,7 @@ export default function CTOTranslator() {
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="block text-white/70 text-sm font-medium">Status</label>
+                <label className="block text-white/70 text-sm font-medium">Status <span style={{ color: "#b56422" }}>*</span></label>
                 <div className="flex gap-2">
                   {STATUSES.map((s) => (
                     <button
@@ -378,7 +378,7 @@ export default function CTOTranslator() {
                       style={
                         status === s
                           ? { background: "#b56422", borderColor: "#b56422", color: "#fff" }
-                          : { background: "transparent", borderColor: "rgba(255,255,255,0.15)", color: "rgba(255,255,255,0.5)" }
+                          : { background: "rgba(235,216,174,0.08)", borderColor: "rgba(235,216,174,0.3)", color: "#ebd8ae" }
                       }
                     >
                       {s === "In Progress" ? "In Prog." : s}
