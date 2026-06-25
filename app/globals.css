@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0f1644;
+  --orange: #b56422;
+  --teal: #096191;
+}
+
+body {
+  color: #0f1644;
+  background: #0f1644;
+  font-family: "Inter", sans-serif;
+}
