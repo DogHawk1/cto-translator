@@ -14,10 +14,10 @@ body {
   font-family: "Inter", sans-serif;
 }
 
-.input-cream {
-  color: #ebd8ae !important;
+#initiative-input::placeholder {
+  color: #6b7280;
 }
 
-.input-cream::placeholder {
-  color: rgba(235, 216, 174, 0.4) !important;
+@media print {
+  body { background: white !important; }
 }
