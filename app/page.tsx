@@ -346,7 +346,7 @@ export default function CTOTranslator() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Migrate core services to Kubernetes to improve deployment reliability and reduce infrastructure costs"
                 className="w-full rounded-lg px-4 py-3 text-sm border border-white/10 focus:outline-none resize-none text-navy placeholder-navy/40"
-                style={{ background: "#ebd8ae" }}
+                style={{ background: "var(--ast-global-color-5, #ebd8ae)" }}
               />
             </div>
 
@@ -356,7 +356,7 @@ export default function CTOTranslator() {
                 value={category}
                 onChange={(e) => setCategory(e.target.value as Category | "")}
                 className="w-full rounded-lg px-4 py-3 text-sm border border-white/10 focus:outline-none appearance-none text-navy"
-                style={{ background: "#ebd8ae" }}
+                style={{ background: "var(--ast-global-color-5, #ebd8ae)" }}
               >
                 <option value="">Select a category…</option>
                 {CATEGORIES.map((c) => (
