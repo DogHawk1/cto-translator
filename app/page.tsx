@@ -240,12 +240,34 @@ export default function CTOTranslator() {
   const [status, setStatus] = useState<Status | "">("");
   const [output, setOutput] = useState<TranslationOutput | null>(null);
   const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const canTranslate = name.trim() && category && effort && status;
 
-  function handleTranslate() {
+  async function handleTranslate() {
     if (!canTranslate) return;
-    setOutput(translate(name.trim(), category as Category, effort as Effort, status as Status));
+    setLoading(true);
+    setError(null);
+
+    const deterministic = translate(name.trim(), category as Category, effort as Effort, status as Status);
+
+    try {
+      const res = await fetch("/api/translate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name.trim(), category, effort, status }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.boardRestatement) throw new Error(data.error ?? "Unknown error");
+      setOutput({ ...deterministic, boardRestatement: data.boardRestatement });
+    } catch (err) {
+      // Fall back to deterministic restatement if AI call fails
+      setOutput(deterministic);
+      setError("AI restatement unavailable — showing template version.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   function handleCopy() {
@@ -390,16 +412,20 @@ export default function CTOTranslator() {
 
             <button
               onClick={handleTranslate}
-              disabled={!canTranslate}
+              disabled={!canTranslate || loading}
               className="w-full py-4 rounded-xl text-base font-bold transition-all"
               style={
-                canTranslate
+                canTranslate && !loading
                   ? { background: "#b56422", color: "#fff", cursor: "pointer" }
                   : { background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.25)", cursor: "not-allowed" }
               }
             >
-              Translate →
+              {loading ? "Translating…" : "Translate →"}
             </button>
+
+            {error && (
+              <p className="text-amber-400 text-xs text-center">{error}</p>
+            )}
 
             <div className="border-t border-white/8 pt-6">
               <p className="text-white/30 text-xs font-semibold uppercase tracking-wider mb-3">Category → Business Frame</p>
