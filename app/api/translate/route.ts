@@ -49,13 +49,14 @@ Business frame to use: ${FRAME_CONTEXT[category] ?? ""}
 Write a 2-3 sentence board-language restatement of this initiative.
 
 Critical rules:
-- Do NOT repeat the technical description verbatim or reuse its phrasing
-- Do NOT use technical jargon (no references to specific tools, languages, frameworks, or infrastructure concepts)
-- Translate the WHAT into the business WHY — what problem does this solve for the business, and what happens if it is not solved?
+- The initiative description above may be rough, informal, or written in the first person — interpret the underlying intent and rewrite it professionally
+- Do NOT quote, paraphrase, or repeat any of the initiative description's phrasing
+- Do NOT use technical jargon (no specific tools, languages, frameworks, or infrastructure terms)
+- Translate the WHAT into the business WHY — what problem does this solve, and what is the cost of inaction?
 - Apply the business frame above as your primary lens
-- Match the tense to the status (past/present/future as instructed above)
+- Match tense to the status (past/present/future as instructed above)
 - Write in the confident, precise voice of a CTO presenting to a board — no hedging, no filler
-- 2-3 sentences only. No labels, no preamble, no bullet points.`;
+- 2-3 sentences only. Output the sentences directly with no labels, preamble, or bullet points.`;
 
     const message = await client.messages.create({
       model: "claude-sonnet-4-6",

@@ -51,10 +51,10 @@ const statusMeta: Record<Status, StatusMeta> = {
 interface CategoryConfig {
   frame: string;
   businessProblem: string;
-  techToBusinessBridge: (name: string, effort: Effort, sm: StatusMeta) => string;
+  techToBusinessBridge: (effort: Effort, sm: StatusMeta) => string;
   outcomeStatement: (sm: StatusMeta) => string;
   metrics: string[];
-  boardSlide: (name: string) => string;
+  boardSlide: string;
 }
 
 const categoryConfig: Record<Category, CategoryConfig> = {
@@ -62,8 +62,8 @@ const categoryConfig: Record<Category, CategoryConfig> = {
     frame: "Revenue Protection",
     businessProblem:
       "Unplanned downtime carries direct revenue impact and erodes customer trust in ways that are difficult to recover.",
-    techToBusinessBridge: (name, effort, sm) =>
-      `${sm.prefix} ${effortAdj[effort]} investment in ${name} ${sm.verb} the reliability constraints that expose the business to service interruptions and the revenue loss that follows them.`,
+    techToBusinessBridge: (effort, sm) =>
+      `We are making a ${effortAdj[effort]} investment to ${sm.verb === "addressed" ? "address" : sm.verb === "is addressing" ? "address" : "address"} the reliability constraints that expose the business to service interruptions and the revenue loss that follows them.`,
     outcomeStatement: (sm) =>
       `${sm.outcomePrefix} measurable improvement in system availability, reduced incident frequency, and a lower probability of revenue-affecting outages.`,
     metrics: [
@@ -72,16 +72,16 @@ const categoryConfig: Record<Category, CategoryConfig> = {
       "Estimated revenue-at-risk per hour of unplanned downtime",
       "Incident frequency and severity trend",
     ],
-    boardSlide: (name) =>
-      `${name} reduces the probability and blast radius of service outages, protecting an estimated $[X] in revenue-at-risk per hour of downtime — a direct improvement to our reliability SLA.`,
+    boardSlide:
+      "This initiative reduces the probability and blast radius of service outages, protecting an estimated $[X] in revenue-at-risk per hour of downtime — a direct improvement to our reliability SLA.",
   },
 
   Security: {
     frame: "Risk Reduction",
     businessProblem:
       "The current threat landscape carries material financial and reputational exposure that the board needs to understand in terms of liability, not technology.",
-    techToBusinessBridge: (name, effort, sm) =>
-      `${sm.prefix} ${effortAdj[effort]} investment in ${name} ${sm.verb} a specific class of risk that, if left unaddressed, could result in regulatory penalties, liability claims, or loss of enterprise customer trust.`,
+    techToBusinessBridge: (effort, sm) =>
+      `We are making a ${effortAdj[effort]} investment to close a specific class of risk that, if left unaddressed, could result in regulatory penalties, liability claims, or loss of enterprise customer trust.`,
     outcomeStatement: (sm) =>
       `${sm.outcomePrefix} a measurable reduction in our risk exposure profile, protecting the balance sheet and our ability to win and retain enterprise deals.`,
     metrics: [
@@ -90,16 +90,16 @@ const categoryConfig: Record<Category, CategoryConfig> = {
       "Number of enterprise security requirements now satisfied",
       "Time-to-remediation for critical vulnerabilities",
     ],
-    boardSlide: (name) =>
-      `${name} eliminates a material security exposure, reducing estimated liability by $[X] and satisfying the security requirements that are currently gating $[Y] in enterprise pipeline.`,
+    boardSlide:
+      "This initiative eliminates a material security exposure, reducing estimated liability by $[X] and satisfying the security requirements currently gating $[Y] in enterprise pipeline.",
   },
 
   Performance: {
     frame: "Growth Enablement",
     businessProblem:
       "Application performance is directly correlated with customer conversion rates and churn — underperformance has a measurable top-line cost.",
-    techToBusinessBridge: (name, effort, sm) =>
-      `${sm.prefix} ${effortAdj[effort]} investment in ${name} ${sm.verb} the performance constraints that are degrading user experience and measurably impacting conversion and retention.`,
+    techToBusinessBridge: (effort, sm) =>
+      `We are making a ${effortAdj[effort]} investment to address the performance constraints that are degrading user experience and measurably impacting conversion and retention.`,
     outcomeStatement: (sm) =>
       `${sm.outcomePrefix} faster load times, improved conversion rates, and lower churn — compounding gains that flow directly to revenue.`,
     metrics: [
@@ -108,16 +108,16 @@ const categoryConfig: Record<Category, CategoryConfig> = {
       "Customer churn rate — cohort comparison",
       "Core Web Vitals scores (if customer-facing)",
     ],
-    boardSlide: (name) =>
-      `${name} targets a [X]ms reduction in load time — a performance improvement that industry benchmarks associate with a [Y]% uplift in conversion, translating to an estimated $[Z] in incremental revenue.`,
+    boardSlide:
+      "This initiative targets a [X]ms reduction in load time — a performance improvement that industry benchmarks associate with a [Y]% uplift in conversion, translating to an estimated $[Z] in incremental revenue.",
   },
 
   "Developer Productivity": {
     frame: "Competitive Position",
     businessProblem:
       "Delivery speed is a direct competitive input. Every week of delay in shipping product is a week our competitors can use to close the gap or extend their lead.",
-    techToBusinessBridge: (name, effort, sm) =>
-      `${sm.prefix} ${effortAdj[effort]} investment in ${name} ${sm.verb} the friction in our engineering delivery process that slows our ability to ship customer value and respond to market changes.`,
+    techToBusinessBridge: (effort, sm) =>
+      `We are making a ${effortAdj[effort]} investment to remove the friction in our engineering delivery process that slows our ability to ship customer value and respond to market changes.`,
     outcomeStatement: (sm) =>
       `${sm.outcomePrefix} a meaningful compression in our time-to-market, enabling the business to move faster than competitors who are still operating with more overhead.`,
     metrics: [
@@ -126,16 +126,16 @@ const categoryConfig: Record<Category, CategoryConfig> = {
       "Change failure rate and mean time to restore",
       "Developer satisfaction / eNPS",
     ],
-    boardSlide: (name) =>
-      `${name} accelerates our delivery capability, targeting a [X]% reduction in cycle time — compressing our ability to respond to competitive threats from [Y weeks] to [Z weeks].`,
+    boardSlide:
+      "This initiative accelerates our delivery capability, targeting a [X]% reduction in cycle time — compressing our ability to respond to competitive threats from [Y weeks] to [Z weeks].",
   },
 
   "Platform/Architecture": {
     frame: "Revenue Ceiling Removal",
     businessProblem:
       "Our current architecture constrains the scale at which we can operate and serve customers — without addressing it, growth creates fragility rather than leverage.",
-    techToBusinessBridge: (name, effort, sm) =>
-      `${sm.prefix} ${effortAdj[effort]} investment in ${name} ${sm.verb} the structural constraints that would otherwise prevent us from serving larger customers, higher transaction volumes, or new market segments profitably.`,
+    techToBusinessBridge: (effort, sm) =>
+      `We are making a ${effortAdj[effort]} investment to remove the structural constraints that would otherwise prevent us from serving larger customers, higher transaction volumes, or new market segments profitably.`,
     outcomeStatement: (sm) =>
       `${sm.outcomePrefix} the removal of the architectural ceiling that currently limits our growth, enabling the business to scale without proportional cost or risk increase.`,
     metrics: [
@@ -144,16 +144,16 @@ const categoryConfig: Record<Category, CategoryConfig> = {
       "Largest customer or contract tier now serviceable",
       "Percentage of pipeline previously blocked by scale limitations",
     ],
-    boardSlide: (name) =>
-      `${name} removes the architectural ceiling that currently limits us to [X] scale, enabling the business to pursue [Y] customer tier and [Z] transaction volume without re-platforming.`,
+    boardSlide:
+      "This initiative removes the architectural ceiling that currently limits us to [X] scale, enabling the business to pursue [Y] customer tier and [Z] transaction volume without re-platforming.",
   },
 
   "Data/AI": {
     frame: "Margin & Efficiency Gains",
     businessProblem:
       "Better data and AI capabilities directly improve the quality and speed of decisions across the business — poor data means slower cycles, more waste, and missed revenue signals.",
-    techToBusinessBridge: (name, effort, sm) =>
-      `${sm.prefix} ${effortAdj[effort]} investment in ${name} ${sm.verb} the data quality and analytical gaps that slow decision-making, reduce operational efficiency, and limit our ability to act on revenue opportunities faster than competitors.`,
+    techToBusinessBridge: (effort, sm) =>
+      `We are making a ${effortAdj[effort]} investment to close the data quality and analytical gaps that slow decision-making, reduce operational efficiency, and limit our ability to act on revenue opportunities faster than competitors.`,
     outcomeStatement: (sm) =>
       `${sm.outcomePrefix} faster, higher-quality decisions, measurable cost reduction from automated workflows, and a compounding advantage as more business processes become data-informed.`,
     metrics: [
@@ -162,16 +162,16 @@ const categoryConfig: Record<Category, CategoryConfig> = {
       "Cost savings from automated or data-optimized workflows",
       "Revenue attributed to data-driven recommendations or interventions",
     ],
-    boardSlide: (name) =>
-      `${name} improves decision quality and operational efficiency across [X] business processes, targeting $[Y] in cost reduction and a [Z]% improvement in [specific business metric].`,
+    boardSlide:
+      "This initiative improves decision quality and operational efficiency across [X] business processes, targeting $[Y] in cost reduction and a [Z]% improvement in [specific business metric].",
   },
 
   Compliance: {
     frame: "Risk & Deal Enablement",
     businessProblem:
       "Regulatory non-compliance carries direct financial exposure and is increasingly a prerequisite for enterprise sales — compliance gaps are both a liability and a revenue blocker.",
-    techToBusinessBridge: (name, effort, sm) =>
-      `${sm.prefix} ${effortAdj[effort]} investment in ${name} ${sm.verb} the compliance gap that currently exposes the business to regulatory penalties and blocks our ability to close security-sensitive enterprise deals.`,
+    techToBusinessBridge: (effort, sm) =>
+      `We are making a ${effortAdj[effort]} investment to close the compliance gap that currently exposes the business to regulatory penalties and blocks our ability to close security-sensitive enterprise deals.`,
     outcomeStatement: (sm) =>
       `${sm.outcomePrefix} the elimination of a quantifiable regulatory liability and the conversion of a compliance requirement into a competitive differentiator.`,
     metrics: [
@@ -180,8 +180,8 @@ const categoryConfig: Record<Category, CategoryConfig> = {
       "Enterprise deals in pipeline unblocked by certification",
       "Audit readiness timeline compression",
     ],
-    boardSlide: (name) =>
-      `${name} achieves [specific compliance standard], eliminating an estimated $[X] in regulatory exposure and satisfying the requirement that is currently blocking $[Y] in enterprise pipeline.`,
+    boardSlide:
+      "This initiative achieves [specific compliance standard], eliminating an estimated $[X] in regulatory exposure and satisfying the requirement currently blocking $[Y] in enterprise pipeline.",
   },
 };
 
@@ -196,7 +196,7 @@ function translate(
 
   const boardRestatement = [
     config.businessProblem,
-    config.techToBusinessBridge(name, effort, sm),
+    config.techToBusinessBridge(effort, sm),
     config.outcomeStatement(sm),
   ].join(" ");
 
@@ -204,7 +204,7 @@ function translate(
     boardRestatement,
     primaryFrame: config.frame,
     suggestedMetrics: config.metrics,
-    boardSlide: config.boardSlide(name),
+    boardSlide: config.boardSlide,
   };
 }
 
