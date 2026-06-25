@@ -340,12 +340,13 @@ export default function CTOTranslator() {
                 Initiative Name / Description <span style={{ color: "#b56422" }}>*</span>
               </label>
               <textarea
+                id="initiative-input"
                 rows={3}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Migrate core services to Kubernetes to improve deployment reliability and reduce infrastructure costs"
-                className="input-cream w-full rounded-lg px-4 py-3 text-sm placeholder-white/20 border border-white/10 focus:outline-none focus:border-orange resize-none"
-                style={{ background: "rgba(255,255,255,0.06)" }}
+                className="w-full rounded-lg px-4 py-3 text-sm border border-white/10 focus:outline-none resize-none text-navy placeholder-navy/40"
+                style={{ background: "#ebd8ae" }}
               />
             </div>
 
@@ -354,8 +355,8 @@ export default function CTOTranslator() {
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value as Category | "")}
-                className="input-cream w-full rounded-lg px-4 py-3 text-sm border border-white/10 focus:outline-none focus:border-orange appearance-none"
-                style={{ background: "#0f1644" }}
+                className="w-full rounded-lg px-4 py-3 text-sm border border-white/10 focus:outline-none appearance-none text-navy"
+                style={{ background: "#ebd8ae" }}
               >
                 <option value="">Select a category…</option>
                 {CATEGORIES.map((c) => (
@@ -538,6 +539,14 @@ export default function CTOTranslator() {
       <style>{`
         @media print {
           body { background: white !important; }
+        }
+        #initiative-input,
+        #initiative-input::placeholder,
+        #category-select {
+          color: #ebd8ae !important;
+        }
+        #initiative-input::placeholder {
+          color: rgba(235,216,174,0.45) !important;
         }
       `}</style>
     </div>
