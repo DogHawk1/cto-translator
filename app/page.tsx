@@ -540,14 +540,6 @@ export default function CTOTranslator() {
         @media print {
           body { background: white !important; }
         }
-        #initiative-input,
-        #initiative-input::placeholder,
-        #category-select {
-          color: #ebd8ae !important;
-        }
-        #initiative-input::placeholder {
-          color: rgba(235,216,174,0.45) !important;
-        }
       `}</style>
     </div>
   );
