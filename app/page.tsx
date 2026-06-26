@@ -306,7 +306,7 @@ export default function CTOTranslator() {
       <header className="border-b border-white/10 print:border-gray-200">
         <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
           <div>
-            <h1 className="text-white print:text-navy text-lg" style={{ fontFamily: "'Marcellus', serif" }}>
+            <h1 className="print:text-navy text-lg" style={{ fontFamily: "'Marcellus', serif", color: "#ebd8ae" }}>
               CTO → Board Translator
             </h1>
             <p className="text-white/40 print:text-gray-500 text-xs mt-0.5">
