@@ -329,12 +329,6 @@ export default function CTOTranslator() {
       {/* Hero */}
       <section className="text-center px-6 pt-16 pb-12 print:hidden">
         <div className="max-w-3xl mx-auto">
-          <div
-            className="inline-block text-xs font-semibold uppercase tracking-widest rounded-full px-4 py-1.5 mb-8 border"
-            style={{ color: "#b56422", borderColor: "rgba(181,100,34,0.35)", background: "rgba(181,100,34,0.1)" }}
-          >
-            Free Tool
-          </div>
           <h1
             className="leading-tight mb-6"
             style={{
