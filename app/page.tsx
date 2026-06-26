@@ -302,17 +302,18 @@ export default function CTOTranslator() {
 
   return (
     <div className="min-h-screen bg-navy print:bg-white">
-      {/* Header */}
-      <header className="border-b border-white/10 print:border-gray-200">
-        <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-          <div>
-            <h1 className="print:text-navy text-lg" style={{ fontFamily: "'Marcellus', serif", color: "#ebd8ae" }}>
-              CTO → Board Translator
-            </h1>
-            <p className="text-white/40 print:text-gray-500 text-xs mt-0.5">
-              Translate technical initiatives into board-ready business language
-            </p>
-          </div>
+      {/* Nav */}
+      <nav className="border-b border-white/10 print:border-gray-200">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+          <a
+            href="https://stevenhdoherty.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold tracking-wide"
+            style={{ color: "#ebd8ae" }}
+          >
+            stevenhdoherty.com
+          </a>
           <a
             href="https://stevenhdoherty.com/appointment/"
             target="_blank"
@@ -323,9 +324,35 @@ export default function CTOTranslator() {
             Book a Call
           </a>
         </div>
-      </header>
+      </nav>
 
-      <main className="max-w-6xl mx-auto px-6 py-10">
+      {/* Hero */}
+      <section className="text-center px-6 pt-16 pb-12 print:hidden">
+        <div className="max-w-3xl mx-auto">
+          <div
+            className="inline-block text-xs font-semibold uppercase tracking-widest rounded-full px-4 py-1.5 mb-8 border"
+            style={{ color: "#b56422", borderColor: "rgba(181,100,34,0.35)", background: "rgba(181,100,34,0.1)" }}
+          >
+            Free Tool
+          </div>
+          <h1
+            className="leading-tight mb-6"
+            style={{
+              fontFamily: "'Marcellus', serif",
+              fontSize: "clamp(2.5rem, 6vw, 4rem)",
+              color: "#ebd8ae",
+              lineHeight: 1.15,
+            }}
+          >
+            CTO → Board Translator
+          </h1>
+          <p className="text-lg max-w-xl mx-auto" style={{ color: "rgba(255,255,255,0.55)" }}>
+            Describe your initiative in engineering language. Get back board-ready language that connects technology decisions to business outcomes.
+          </p>
+        </div>
+      </section>
+
+      <main className="max-w-6xl mx-auto px-6 pb-10">
         <div className="grid lg:grid-cols-2 gap-8 items-start">
 
           {/* ── Left panel: Inputs ── */}
