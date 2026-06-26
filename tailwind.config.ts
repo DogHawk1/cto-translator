@@ -13,8 +13,8 @@ const config: Config = {
         teal: "#096191",
       },
       fontFamily: {
-        marcellus: ["Marcellus", "serif"],
-        inter: ["Inter", "sans-serif"],
+        marcellus: ["var(--font-marcellus)", "serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
       },
     },
   },
