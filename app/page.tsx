@@ -303,7 +303,7 @@ export default function CTOTranslator() {
   return (
     <div className="min-h-screen bg-navy print:bg-white">
       {/* Nav */}
-      <nav className="border-b border-white/10 print:border-gray-200">
+      <nav className="border-b border-white/10 print:hidden">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <a
             href="https://stevenhdoherty.com"
@@ -347,7 +347,19 @@ export default function CTOTranslator() {
       </section>
 
       <main className="max-w-6xl mx-auto px-6 pb-10">
-        <div className="grid lg:grid-cols-2 gap-8 items-start">
+        {/* Print-only document header */}
+        {output && (
+          <div className="hidden print:block border-b border-gray-200 pb-5 mb-6">
+            <p style={{ fontFamily: "'Marcellus', serif", color: "#0f1644", fontSize: "1.25rem" }}>
+              CTO → Board Translator
+            </p>
+            <p className="text-gray-400 text-xs mt-0.5">stevenhdoherty.com</p>
+            <p className="text-gray-900 font-semibold text-base mt-4">{name}</p>
+            <p className="text-gray-500 text-xs mt-0.5">{category} · {effort} · {status}</p>
+          </div>
+        )}
+
+        <div className="grid lg:grid-cols-2 gap-8 items-start print:block">
 
           {/* ── Left panel: Inputs ── */}
           <div className="bg-white/5 print:bg-white border border-white/10 print:border-gray-200 rounded-2xl p-8 space-y-6 print:hidden">
@@ -474,12 +486,12 @@ export default function CTOTranslator() {
               </div>
             ) : (
               <>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between print:hidden">
                   <div>
-                    <h2 className="text-white print:text-navy font-semibold text-base">{name}</h2>
-                    <p className="text-white/40 print:text-gray-500 text-xs mt-0.5">{category} · {effort} · {status}</p>
+                    <h2 className="text-white font-semibold text-base">{name}</h2>
+                    <p className="text-white/40 text-xs mt-0.5">{category} · {effort} · {status}</p>
                   </div>
-                  <div className="flex gap-2 print:hidden">
+                  <div className="flex gap-2">
                     <button
                       onClick={handleCopy}
                       className="px-3 py-2 rounded-lg text-xs font-semibold border border-white/15 text-white/60 hover:text-white hover:border-white/30 transition-colors"
@@ -496,13 +508,13 @@ export default function CTOTranslator() {
                 </div>
 
                 <div
-                  className="rounded-xl p-4 border"
+                  className="rounded-xl p-4 border print-frame-card"
                   style={{ background: `${frameColor}14`, borderColor: `${frameColor}30` }}
                 >
-                  <p className="text-xs font-semibold uppercase tracking-wider mb-1" style={{ color: frameColor }}>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-1 print-frame-label" style={{ color: frameColor }}>
                     Primary Outcome Frame
                   </p>
-                  <p className="font-bold text-lg" style={{ color: frameColor }}>
+                  <p className="font-bold text-lg print-frame-value" style={{ color: frameColor }}>
                     {output.primaryFrame}
                   </p>
                 </div>
@@ -526,15 +538,15 @@ export default function CTOTranslator() {
                   <ul className="space-y-3">
                     {output.suggestedMetrics.map((m, i) => (
                       <li key={i} className="flex gap-3 text-sm">
-                        <span className="shrink-0 mt-0.5 font-bold" style={{ color: "#b56422" }}>→</span>
+                        <span className="shrink-0 mt-0.5 font-bold print-metric-arrow" style={{ color: "#b56422" }}>→</span>
                         <span className="text-white/80 print:text-gray-700 leading-relaxed">{m}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="rounded-xl p-6 border" style={{ background: "rgba(9,97,145,0.15)", borderColor: "rgba(9,97,145,0.3)" }}>
-                  <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "#096191" }}>
+                <div className="rounded-xl p-6 border print-slide-card" style={{ background: "rgba(9,97,145,0.15)", borderColor: "rgba(9,97,145,0.3)" }}>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-3 print-slide-label" style={{ color: "#096191" }}>
                     Suggested Board Slide Sentence
                   </p>
                   <p className="text-white/90 print:text-gray-800 text-sm leading-relaxed italic">
@@ -550,7 +562,7 @@ export default function CTOTranslator() {
         </div>
       </main>
 
-      <footer className="border-t border-white/10 print:border-gray-200 py-8 text-center text-white/20 print:text-gray-400 text-xs mt-8">
+      <footer className="border-t border-white/10 print:hidden py-8 text-center text-white/20 text-xs mt-8">
         © {new Date().getFullYear()} Steve Doherty ·{" "}
         <a href="https://stevenhdoherty.com" className="hover:text-white/50 transition-colors">
           stevenhdoherty.com
