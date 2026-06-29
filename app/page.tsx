@@ -494,13 +494,15 @@ export default function CTOTranslator() {
                   <div className="flex gap-2">
                     <button
                       onClick={handleCopy}
-                      className="px-3 py-2 rounded-lg text-xs font-semibold border border-white/15 text-white/60 hover:text-white hover:border-white/30 transition-colors"
+                      className="px-3 py-2 rounded-lg text-xs font-semibold border transition-colors"
+                      style={{ borderColor: "rgba(235,216,174,0.4)", color: "#ebd8ae", background: "rgba(235,216,174,0.07)" }}
                     >
                       {copied ? "✓ Copied" : "Copy"}
                     </button>
                     <button
                       onClick={handlePrint}
-                      className="px-3 py-2 rounded-lg text-xs font-semibold border border-white/15 text-white/60 hover:text-white hover:border-white/30 transition-colors"
+                      className="px-3 py-2 rounded-lg text-xs font-semibold border transition-colors"
+                      style={{ borderColor: "rgba(235,216,174,0.4)", color: "#ebd8ae", background: "rgba(235,216,174,0.07)" }}
                     >
                       Export PDF
                     </button>
